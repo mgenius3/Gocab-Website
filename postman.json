@@ -1,0 +1,38 @@
+{
+  "info": {
+    "_postman_id": "unique-identifier",
+    "name": "Example API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET Request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "url": {
+          "protocol": "http",
+          "host": ["localhost:3001"],
+          "path": ["moses"]
+        }
+      }
+    },
+    {
+      "name": "POST Request",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"key\": \"value\" }"
+        },
+        "url": {
+          "protocol": "http",
+          "host": ["localhost:3001"],
+          "path": ["moses"]
+        }
+      }
+    }
+  ]
+}
