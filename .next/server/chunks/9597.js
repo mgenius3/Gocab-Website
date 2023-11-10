@@ -1,0 +1,1 @@
+exports.id=9597,exports.ids=[9597],exports.modules={39597:(_,t,e)=>{"use strict";e.r(t),e.d(t,{default:()=>__WEBPACK_DEFAULT_EXPORT__});var r=e(20997);e(86764);let __WEBPACK_DEFAULT_EXPORT__=function({Component:_,pageProps:t}){return r.jsx(_,{...t})}},86764:()=>{}};
