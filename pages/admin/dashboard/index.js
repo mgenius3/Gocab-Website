@@ -17,10 +17,15 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import mainListItems from "./listItems";
+import MainListItems from "./listItems";
+import FetchApiClient from "../../../fetch_api_clients/api";
+
 import Chart from "./Chart";
 import Deposits from "./Deposits";
-import Orders from "./Orders";
+import UnverifiedDrivers from "./unverifiedDrivers";
+import { useRouter } from "next/router";
+import { jwtDecode } from "jwt-decode";
+import Title from "./Title";
 
 function Copyright(props) {
   return (
@@ -31,8 +36,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        gocab
+      <Link color="inherit" href="https://gocab.com.ng">
+        gocab.com.ng
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -90,10 +95,54 @@ const Drawer = styled(MuiDrawer, {
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
+  const [usersData, setUsersData] = React.useState(null);
+  const [driversData, setDriversData] = React.useState(null);
+
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const router = useRouter();
+  const [user, setUser] = React.useState(null);
+
+  const [token] = React.useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("adminToken");
+    }
+  });
+  const api = new FetchApiClient("/admin", token);
+
+  const fetchDriverInfo = async () => {
+    try {
+      let { error, response } = await api.get("/all_drivers");
+      if (error) throw new Error(error);
+      else setDriversData(response);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const fetchUsersInfo = async () => {
+    try {
+      let { error, response } = await api.get("/all_users");
+      if (error) throw new Error(error);
+      else setUsersData(response);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  React.useEffect(() => {
+    try {
+      let decoded = jwtDecode(token);
+      setUser(decoded);
+      fetchDriverInfo();
+      fetchUsersInfo();
+    } catch (err) {
+      router.push("/admin/login");
+    }
+  }, [token]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -124,13 +173,13 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Gocab Dashboard
+              {user?.name} - Admin Dashboard
             </Typography>
-            <IconButton color="inherit">
+            {/* <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -148,7 +197,7 @@ export default function Dashboard() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            <MainListItems />
             <Divider sx={{ my: 1 }} />
             {/* {secondaryListItems} */}
           </List>
@@ -169,19 +218,22 @@ export default function Dashboard() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12} md={8} lg={6}>
                 <Paper
                   sx={{
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 240,
+                    height: "auto",
                   }}
                 >
-                  <Chart />
+                  <Chart
+                    no_of_users={usersData?.length}
+                    no_of_drivers={driversData?.length}
+                  />
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
+              {/* Drivers */}
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
@@ -191,13 +243,47 @@ export default function Dashboard() {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  <Title>No of Drivers</Title>
+                  <Typography component="p" variant="h1">
+                    {driversData?.length}
+                  </Typography>
+
+                  <div>
+                    <Link color="primary" href="/admin/dashboard/drivers">
+                      drivers dashboard
+                    </Link>
+                  </div>
                 </Paper>
               </Grid>
-              {/* Recent Orders */}
+
+              {/* Drivers */}
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 240,
+                  }}
+                >
+                  <Title>No of Users</Title>
+                  <Typography component="p" variant="h1">
+                    {usersData?.length}
+                  </Typography>
+
+                  <div>
+                    <Link color="primary" href="/admin/dashboard/users">
+                      users dashboard
+                    </Link>
+                  </div>
+                </Paper>
+              </Grid>
+              {/* Recent UnverifiedDrivers */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Orders />
+                  <Title>Unverified Drivers</Title>
+
+                  <UnverifiedDrivers driversData={driversData} />
                 </Paper>
               </Grid>
             </Grid>

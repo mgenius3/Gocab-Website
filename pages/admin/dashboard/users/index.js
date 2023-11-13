@@ -16,7 +16,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MainListItems from "../listItems";
 
-import AllDriversInformation from "./info";
+import AllUsersInformation from "./info";
 import { useRouter } from "next/router";
 import { jwtDecode } from "jwt-decode";
 
@@ -29,8 +29,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        gocab
+      <Link color="inherit" href="https://gocab.com.ng">
+        gocab.com.ng
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -88,6 +88,11 @@ const Drawer = styled(MuiDrawer, {
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
+  const [open, setOpen] = React.useState(true);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
   const router = useRouter();
   const [user, setUser] = React.useState(null);
 
@@ -96,10 +101,6 @@ export default function Dashboard() {
       return localStorage.getItem("adminToken");
     }
   });
-  const [open, setOpen] = React.useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
 
   React.useEffect(() => {
     try {
@@ -182,7 +183,7 @@ export default function Dashboard() {
           }}
         >
           <Toolbar />
-          <AllDriversInformation />
+          <AllUsersInformation />
         </Box>
       </Box>
     </ThemeProvider>

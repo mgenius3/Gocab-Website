@@ -4,13 +4,10 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { firebaseConfig } from "../../configdb/db";
-import { initializeApp } from "firebase/app";
-import "firebase/database";
-import { getDatabase, ref, set } from "firebase/database";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import Link from "next/link";
 import FetchApiClient from "../../fetch_api_clients/api";
 import LoadingButton from "@mui/lab/LoadingButton";
+import Head from "next/head";
 
 import {
   Paper,
@@ -61,53 +58,14 @@ const SignUp = () => {
       toast.error(err.message);
       setLoading(false);
     }
-    // const app = initializeApp(firebaseConfig);
-    // const db = getDatabase(app);
-    // const auth = getAuth(app);
-
-    // createUserWithEmailAndPassword(auth, formData.email, formData.password)
-    //   .then((userCredential) => {
-    //     const user = userCredential.user;
-
-    //     const userData = {
-    //       name: formData.name,
-    //       phone: formData.phone,
-    //       address: formData.address,
-    //       email: formData.email,
-    //     };
-    //     const dbRef = ref(db, "users/" + user.uid);
-
-    //     set(dbRef, userData)
-    //       .then(() => {
-    //         setLoading(false);
-    //         toast.info("Account created successfully");
-    //       })
-    //       .catch((error) => {
-    //         if (error.code === "auth/email-already-in-use") {
-    //           toast.error(
-    //             "Email address is already in use. Please use a different email."
-    //           );
-    //         } else {
-    //           toast.error("Error storing data in Firebase:", error.message);
-    //         }
-    //         setLoading(false);
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     if (error.code === "auth/email-already-in-use") {
-    //       toast.error(
-    //         "Email address is already in use. Please use a different email."
-    //       );
-    //     } else {
-    //       console.error(error.message);
-    //       toast.error("Error creating Firebase account:", error.message);
-    //     }
-    //     setLoading(false);
-    //   });
   };
 
   return (
     <div>
+      <Head>
+        <title>Register</title>
+        <link rel="icon" href="/images/icon.png" />
+      </Head>
       <Header />
       <Container
         maxWidth="xs"
@@ -188,7 +146,7 @@ const SignUp = () => {
               <LoadingButton
                 loading
                 variant="outlined"
-                className="my-3 cursor-pointer"
+                className="mt-5 mb-3 cursor-pointer"
               >
                 {" "}
                 Sign Up
@@ -197,11 +155,22 @@ const SignUp = () => {
               <Button
                 type="submit"
                 variant="outlined"
-                className="my-3 cursor-pointer"
+                className="mt-5 mb-3 cursor-pointer"
               >
                 Sign Up
               </Button>
             )}
+
+            <Grid container>
+              <Grid
+                item
+                style={{ color: "#1976d2", textDecoration: "underline" }}
+              >
+                <Link href="https://google.com" variant="body2">
+                  {"Already have an account? Login"}
+                </Link>
+              </Grid>
+            </Grid>
           </form>
         </Paper>
         <ToastContainer position="bottom-center" />

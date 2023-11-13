@@ -21,8 +21,6 @@ const DriverRegistration = async (req, res) => {
 
     res.status(201).json({ msg: token });
   } catch (err) {
-    console.log(17);
-    console.log(err);
     res.status(400).json({ msg: err.message });
   }
 };
@@ -30,7 +28,6 @@ const DriverRegistration = async (req, res) => {
 const DriverSignIn = async (req, res) => {
   try {
     const user = await LoginDriver(req.body);
-    console.log(user);
     const token = jwt.sign({ ...user }, "gocab.transit.logistics");
     res.status(200).json({ msg: token });
   } catch (err) {

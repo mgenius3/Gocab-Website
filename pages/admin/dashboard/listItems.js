@@ -3,7 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DriveEtaIcon from "@mui/icons-material/DriveEta";
-
+import { Dashboard } from "@mui/icons-material";
 import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import Link from "next/link";
@@ -16,14 +16,14 @@ export default function mainListItems() {
         <title>Gocab</title>
         <link rel="icon" href="/images/icon.png" />
       </Head>
-      {/* <Link href="/admin/dashboard">
-      <ListItemButton>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="Dashboard" />
-      </ListItemButton>
-    </Link> */}
+      <Link href="/admin/dashboard">
+        <ListItemButton>
+          <ListItemIcon>
+            <Dashboard />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItemButton>
+      </Link>
 
       <Link href="/admin/dashboard/drivers">
         <ListItemButton>

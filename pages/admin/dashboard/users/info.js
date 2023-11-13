@@ -39,8 +39,8 @@ export default function AllUsersInformation() {
   const router = useRouter();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [usersData, setDriversData] = React.useState(null);
-  const [userData, setDriverData] = React.useState(null);
+  const [usersData, setUsersData] = React.useState(null);
+  const [userData, setUserData] = React.useState(null);
   const [user, setUser] = React.useState(null);
 
   const handleChangePage = (event, newPage) => {
@@ -52,11 +52,11 @@ export default function AllUsersInformation() {
     setPage(0);
   };
 
-  const fetchDriverInfo = async () => {
+  const fetchUsersInfo = async () => {
     try {
       let { error, response } = await api.get("/all_users");
       if (error) throw new Error(error);
-      else setDriversData(response);
+      else setUsersData(response);
     } catch (err) {
       console.log(err.message);
     }
@@ -66,7 +66,7 @@ export default function AllUsersInformation() {
     try {
       let decoded = jwtDecode(token);
       setUser(decoded);
-      fetchDriverInfo();
+      fetchUsersInfo();
     } catch (err) {
       console.log(err);
       router.push("/admin/login");
@@ -76,7 +76,7 @@ export default function AllUsersInformation() {
   ///MODAL
   const [open, setOpen] = React.useState(false);
   const handleOpeDriverModal = (data) => {
-    setDriverData(data);
+    setUserData(data);
     setOpen(true);
   };
   const handleClose = () => setOpen(false);

@@ -6,7 +6,10 @@ class FetchApiClient {
 
   async get(endpoint) {
     try {
-      const response = await fetch("/v1" + this.baseURL + endpoint, {
+      //main server
+      // const response = await fetch("/v1" + this.baseURL + endpoint, {
+      //next server
+      const response = await fetch("/api" + this.baseURL + endpoint, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +29,10 @@ class FetchApiClient {
 
   async post(endpoint, body) {
     try {
-      const response = await fetch("/v1" + this.baseURL + endpoint, {
+      //main server
+      // const response = await fetch("/v1" + this.baseURL + endpoint, {
+      //next server
+      const response = await fetch("/api" + this.baseURL + endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +53,10 @@ class FetchApiClient {
 
   async delete(endpoint) {
     try {
-      const response = await fetch("/v1" + this.baseURL + endpoint, {
+      //main server
+      // const response = await fetch("/v1" + this.baseURL + endpoint, {
+      //next server
+      const response = await fetch("/api" + this.baseURL + endpoint, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -27,8 +27,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        gocab.site
+      <Link color="inherit" href="https://gocab.com.ng">
+        gocab.com.ng
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -60,7 +60,7 @@ export default function SignIn() {
       else {
         localStorage.setItem("adminToken", response);
         toast.info("successful login");
-        router.push("/admin/dashboard/drivers");
+        router.push("/admin/dashboard");
       }
       setLoading(false);
     } catch (err) {
