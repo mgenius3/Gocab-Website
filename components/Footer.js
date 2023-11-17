@@ -107,7 +107,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
-                  href="/"
+                  href="https://twitter.com/gocabnig?s=21&t=6UkIQWvqM8RtLwHgHaxiVA"
                 >
                   Twitter
                 </Link>
@@ -115,7 +115,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
-                  href="/"
+                  href="https://www.facebook.com/profile.php?id=61553801965019&mibextid=LQQJ4d"
                 >
                   Facebook
                 </Link>
@@ -126,6 +126,15 @@ export default function Footer() {
                   href="/"
                 >
                   Instagram
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  className="hover:text-gray-900 transition-colors duration-200 font-semibold text-2xl"
+                  href="https://wa.me/message/5VRYHDJMBIWLD1"
+                >
+                  Whatsapp
                 </Link>
               </li>
             </ul>
