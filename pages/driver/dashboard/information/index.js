@@ -15,6 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MainListItems from "../listItems";
+import Head from "next/head";
 
 import { initializeApp } from "firebase/app";
 
@@ -159,6 +160,10 @@ export default function Dashboard() {
   return (
     // <PageAuthentication url="/driver/login">
     <ThemeProvider theme={defaultTheme}>
+      <Head>
+        <title>information</title>
+        <link rel="icon" href="/images/icon.png" />
+      </Head>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -188,11 +193,11 @@ export default function Dashboard() {
             >
               {user?.name} - Dashboard
             </Typography>
-            <IconButton color="inherit">
+            {/* <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

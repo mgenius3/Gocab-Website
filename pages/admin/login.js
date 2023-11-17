@@ -17,6 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function Copyright(props) {
   return (
@@ -71,6 +72,10 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
+      <Head>
+        <title>Login</title>
+        <link rel="icon" href="/images/icon.png" />
+      </Head>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

@@ -96,7 +96,11 @@ export default function UploadInformation({ user }) {
     <Container maxWidth="sm" className="container py-5">
       <h1>Driver Information</h1>
       <form>
-        <FormControl variant="outlined" fullWidth className="py-3 mt-2">
+        <FormControl
+          variant="outlined"
+          fullWidth
+          style={{ padding: "10px 0px!important", marginTop: "10px" }}
+        >
           <TextField
             label="Vehicle Model"
             variant="outlined"
@@ -107,8 +111,13 @@ export default function UploadInformation({ user }) {
           />
           {/* Implement other form fields in a similar way */}
         </FormControl>
+        <br />
 
-        <FormControl variant="outlined" fullWidth className="py-3 mt-2">
+        <FormControl
+          variant="outlined"
+          fullWidth
+          style={{ padding: "10px 0px!important", marginTop: "10px" }}
+        >
           <InputLabel id="ride-offers-label" className="font-bold">
             Ride Offers
           </InputLabel>
@@ -123,7 +132,11 @@ export default function UploadInformation({ user }) {
           </Select>
         </FormControl>
 
-        <FormControl variant="outlined" fullWidth className="py-3 mt-2">
+        <FormControl
+          variant="outlined"
+          fullWidth
+          style={{ padding: "10px 0px!important", marginTop: "10px" }}
+        >
           <TextField
             label="Vehicle Number"
             required
@@ -135,7 +148,11 @@ export default function UploadInformation({ user }) {
           {/* Implement other form fields in a similar way */}
         </FormControl>
 
-        <FormControl variant="outlined" fullWidth className="py-3 mt-2">
+        <FormControl
+          variant="outlined"
+          fullWidth
+          style={{ padding: "10px 0px!important", marginTop: "10px" }}
+        >
           <TextField
             label="Vehicle Colour"
             variant="outlined"
@@ -147,7 +164,11 @@ export default function UploadInformation({ user }) {
           {/* Implement other form fields in a similar way */}
         </FormControl>
 
-        <FormControl variant="outlined" fullWidth className="py-3 mt-2">
+        <FormControl
+          variant="outlined"
+          fullWidth
+          style={{ padding: "10px 0px!important", marginTop: "10px" }}
+        >
           <TextField
             label="Means of Identity"
             variant="outlined"

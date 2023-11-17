@@ -2,19 +2,21 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carous
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import { ImageSlideshow } from "../helper/helper";
+import Link from "next/link";
 
 export default function Main() {
   const images = [
+    "/images/gimage1.jpg",
     "/images/home_display1.jpeg",
+    "/images/gimage3.png",
     "/images/home_display2.jpeg",
-    "/images/home_display3.jpeg",
   ];
   const gocab_images = [
-    "/images/gocab2.jpg",
-    "/images/gocab3.jpg",
-    "/images/gocab9.jpg",
-    "/images/gocab4.jpg",
-    "/images/gocab5.jpg",
+    "/images/gimage1.jpg",
+    "/images/gimage3.png",
+    "/images/gimage5.png",
+    // "/images/gocab4.jpg",
+    // "/images/gocab5.jpg",
   ];
   return (
     <section className="text-gray-600 body-font">
@@ -92,13 +94,15 @@ export default function Main() {
           <div className="md:w-1/2 container px-5">
             <img src="/images/driver_image.jpg" className="rounded-lg w-full" />
             <div className="flex md:hidden block my-3">
-              <p
-                className="
+              <Link href="/driver/login">
+                <p
+                  className="
              bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800 cursor-pointer
                  "
-              >
-                Get Started
-              </p>
+                >
+                  Get Started
+                </p>
+              </Link>
             </div>
           </div>
 
@@ -118,13 +122,15 @@ export default function Main() {
             </div>
 
             <div className="flex md:block hidden">
-              <p
-                className="
+              <Link href="/driver/login">
+                <p
+                  className="
              bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800 cursor-pointer
                  "
-              >
-                Get Started
-              </p>
+                >
+                  Get Started
+                </p>
+              </Link>
             </div>
           </div>
         </div>
@@ -171,7 +177,7 @@ export default function Main() {
           <ImageSlideshow
             images={gocab_images}
             style=" transform hover:scale-110 transition-transform duration-100 ease-in-out"
-            sub_image_class="md:mb-0 py-3 md:w-2/4 w-4/5 mx-auto text-center mx-auto rounded-lg border"
+            sub_image_class="md:mb-0 py-3 md:w-2/4 w-4/5 mx-auto text-center mx-auto rounded-lg"
           />
 
           <div className="flex justify-center md:hidden block my-8 w-5/6">
