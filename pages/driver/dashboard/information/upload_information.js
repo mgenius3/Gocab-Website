@@ -34,7 +34,6 @@ export default function UploadInformation({ user }) {
   const router = useRouter();
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
-  console.log(user);
   const dbRef = ref(db, "drivers/" + user?.uid + "/information");
 
   const handleFileSelect = (e) => {
@@ -203,6 +202,7 @@ export default function UploadInformation({ user }) {
             color="primary"
             variant="outlined"
             className="my-3 cursor-pointer"
+            style={{ margin: "8px 0px!important" }}
           >
             SUBMIT
           </Button>

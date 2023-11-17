@@ -149,7 +149,7 @@ export default function Dashboard() {
       setUser(decoded);
       fetchDriverInfo(decoded?.uid);
     } catch (err) {
-      router.push("/driver/login");
+      router.push("https://gocab.vercel.app/driver/login");
     }
   }, [token]);
 

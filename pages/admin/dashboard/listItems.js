@@ -8,6 +8,8 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import Link from "next/link";
 import Head from "next/head";
+import { ClearLocalStorage } from "../../../helper/helper";
+import { Logout } from "@mui/icons-material";
 
 export default function mainListItems() {
   return (
@@ -16,7 +18,7 @@ export default function mainListItems() {
         <title>Gocab</title>
         <link rel="icon" href="/images/icon.png" />
       </Head>
-      <Link href="/admin/dashboard">
+      <Link href="https://gocab.vercel.app/admin/dashboard">
         <ListItemButton>
           <ListItemIcon>
             <Dashboard />
@@ -25,7 +27,7 @@ export default function mainListItems() {
         </ListItemButton>
       </Link>
 
-      <Link href="/admin/dashboard/drivers">
+      <Link href="https://gocab.vercel.app/admin/dashboard/drivers">
         <ListItemButton>
           <ListItemIcon>
             <DriveEtaIcon />
@@ -34,7 +36,7 @@ export default function mainListItems() {
         </ListItemButton>
       </Link>
 
-      <Link href="/admin/dashboard/users">
+      <Link href="https://gocab.vercel.app/admin/dashboard/users">
         <ListItemButton>
           <ListItemIcon>
             <PeopleIcon />
@@ -43,7 +45,7 @@ export default function mainListItems() {
         </ListItemButton>
       </Link>
 
-      <Link href="/admin/dashboard/reports">
+      <Link href="https://gocab.vercel.app/admin/dashboard/reports">
         <ListItemButton>
           <ListItemIcon>
             <BarChartIcon />
@@ -52,12 +54,14 @@ export default function mainListItems() {
         </ListItemButton>
       </Link>
 
-      {/* <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton> */}
+      <Link href="https://gocab.vercel.app/admin/login">
+        <ListItemButton onClick={() => ClearLocalStorage()}>
+          <ListItemIcon>
+            <Logout />
+          </ListItemIcon>
+          <ListItemText primary="Sign Out" />
+        </ListItemButton>
+      </Link>
     </React.Fragment>
   );
 }

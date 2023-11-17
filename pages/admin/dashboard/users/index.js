@@ -108,7 +108,7 @@ export default function Dashboard() {
       setUser(decoded);
     } catch (err) {
       console.log(err);
-      router.push("/admin/login");
+      router.push("https://gocab.vercel.app/admin/login");
     }
   }, [token]);
 

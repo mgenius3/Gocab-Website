@@ -69,7 +69,7 @@ export default function AllUsersInformation() {
       fetchUsersInfo();
     } catch (err) {
       console.log(err);
-      router.push("/admin/login");
+      router.push("https://gocab.vercel.app/admin/login");
     }
   }, [token]);
 

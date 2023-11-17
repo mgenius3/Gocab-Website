@@ -61,7 +61,7 @@ export default function SignIn() {
       else {
         localStorage.setItem("userToken", JSON.stringify(response));
         toast.info("successful login");
-        router.push("/driver/dashboard/information");
+        router.push("https://gocab.vercel.app/driver/dashboard/information");
       }
       setLoading(false);
     } catch (err) {

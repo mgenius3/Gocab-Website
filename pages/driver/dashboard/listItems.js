@@ -10,6 +10,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import Link from "next/link";
+import { ClearLocalStorage } from "../../../helper/helper";
 
 export default function MainListItems() {
   return (
@@ -23,7 +24,7 @@ export default function MainListItems() {
       </ListItemButton>
     </Link> */}
 
-      <Link href="/driver/dashboard/information">
+      <Link href="https://gocab.vercel.app/driver/dashboard/information">
         <ListItemButton>
           <ListItemIcon>
             <InfoIcon />
@@ -32,8 +33,8 @@ export default function MainListItems() {
         </ListItemButton>
       </Link>
 
-      <Link href="/driver/login">
-        <ListItemButton>
+      <Link href="https://gocab.vercel.app/driver/login">
+        <ListItemButton onClick={() => ClearLocalStorage()}>
           <ListItemIcon>
             <Logout />
           </ListItemIcon>

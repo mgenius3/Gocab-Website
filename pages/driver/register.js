@@ -51,7 +51,7 @@ const SignUp = () => {
       else {
         localStorage.setItem("userToken", JSON.stringify(response));
         toast.info("Successfully registered");
-        router.push("/driver/dashboard/information");
+        router.push("https://gocab.vercel.app/driver/dashboard/information");
       }
       setLoading(false);
     } catch (err) {

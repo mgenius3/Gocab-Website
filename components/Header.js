@@ -50,7 +50,7 @@ export default function Header() {
             <ul className="flex flex-grow justify-end flex-wrap items-center">
               <li>
                 <Link
-                  href="/driver/dashboard/information"
+                  href="https://gocab.vercel.app/driver/dashboard/information"
                   className="font-medium text-blue-600 hover:text-blue-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
                 >
                   Become a Driver

@@ -29,7 +29,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://gocab.com.ng">
         gocab
       </Link>{" "}
       {new Date().getFullYear()}
@@ -107,7 +107,7 @@ export default function Dashboard() {
       setUser(decoded);
     } catch (err) {
       console.log(err);
-      router.push("/admin/login");
+      router.push("https://gocab.vercel.app/admin/login");
     }
   }, [token]);
 

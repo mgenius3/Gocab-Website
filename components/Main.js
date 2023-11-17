@@ -8,15 +8,12 @@ export default function Main() {
   const images = [
     "/images/gimage1.jpg",
     "/images/home_display1.jpeg",
-    "/images/gimage3.png",
-    "/images/home_display2.jpeg",
+    "/images/gimage5.png",
   ];
   const gocab_images = [
     "/images/gimage1.jpg",
     "/images/gimage3.png",
-    "/images/gimage5.png",
-    // "/images/gocab4.jpg",
-    // "/images/gocab5.jpg",
+    "/images/home_display2.jpeg",
   ];
   return (
     <section className="text-gray-600 body-font">
@@ -94,7 +91,7 @@ export default function Main() {
           <div className="md:w-1/2 container px-5">
             <img src="/images/driver_image.jpg" className="rounded-lg w-full" />
             <div className="flex md:hidden block my-3">
-              <Link href="/driver/login">
+              <Link href="https://gocab.vercel.app/driver/login">
                 <p
                   className="
              bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800 cursor-pointer
@@ -122,7 +119,7 @@ export default function Main() {
             </div>
 
             <div className="flex md:block hidden">
-              <Link href="/driver/login">
+              <Link href="https://gocab.vercel.app/driver/login">
                 <p
                   className="
              bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800 cursor-pointer

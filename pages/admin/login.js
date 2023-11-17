@@ -61,7 +61,7 @@ export default function SignIn() {
       else {
         localStorage.setItem("adminToken", response);
         toast.info("successful login");
-        router.push("/admin/dashboard");
+        router.push("https://gocab.vercel.app/admin/dashboard");
       }
       setLoading(false);
     } catch (err) {

@@ -22,3 +22,11 @@ export const ImageSlideshow = ({ images, style, sub_image_class }) => {
     </div>
   );
 };
+
+export function ClearLocalStorage() {
+  useEffect(() => {
+    localStorage.clear(); // Clear all local storage data
+  }, []);
+
+  return null; // No need to render any UI for this component
+}

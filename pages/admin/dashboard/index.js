@@ -140,7 +140,7 @@ export default function Dashboard() {
       fetchDriverInfo();
       fetchUsersInfo();
     } catch (err) {
-      router.push("/admin/login");
+      router.push("https://gocab.vercel.app/admin/login");
     }
   }, [token]);
 
