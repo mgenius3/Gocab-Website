@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/driver/login": "pages/driver/login.js",
-  "/api/driver/[slug]": "pages/api/driver/[slug].js"
+  "/": "pages/index.js",
+  "/driver/register": "pages/driver/register.js"
 }

@@ -8,7 +8,9 @@ import Link from "next/link";
 import FetchApiClient from "../../fetch_api_clients/api";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Head from "next/head";
-
+// import { TextField, InputAdornment, IconButton } from "@material-ui/core";
+// import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Paper,
   TextField,
@@ -16,6 +18,8 @@ import {
   Typography,
   Grid,
   Container,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 
 const SignUp = () => {
@@ -28,6 +32,7 @@ const SignUp = () => {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -130,7 +135,7 @@ const SignUp = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                {/* <TextField
                   label="Password"
                   name="password"
                   variant="outlined"
@@ -139,6 +144,26 @@ const SignUp = () => {
                   type="password"
                   value={formData.password}
                   onChange={handleChange}
+                /> */}
+                <TextField
+                  label="Password"
+                  type={showPassword ? "text" : "password"}
+                  value={formData.password}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="Toggle password visibility"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
             </Grid>
@@ -147,6 +172,7 @@ const SignUp = () => {
                 loading
                 variant="outlined"
                 className="mt-5 mb-3 cursor-pointer"
+                style={{ marginTop: "10px", marginBottom: "3px" }}
               >
                 {" "}
                 Sign Up
@@ -156,6 +182,7 @@ const SignUp = () => {
                 type="submit"
                 variant="outlined"
                 className="mt-5 mb-3 cursor-pointer"
+                style={{ marginTop: "10px", marginBottom: "3px" }}
               >
                 Sign Up
               </Button>
@@ -164,7 +191,11 @@ const SignUp = () => {
             <Grid container>
               <Grid
                 item
-                style={{ color: "#1976d2", textDecoration: "underline" }}
+                style={{
+                  color: "#1976d2",
+                  textDecoration: "underline",
+                  marginTop: "10px",
+                }}
               >
                 <Link href="https://google.com" variant="body2">
                   {"Already have an account? Login"}
