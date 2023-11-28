@@ -22,6 +22,16 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/driver/dashboard/information": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/driver/dashboard/information.js"
+    ],
+    "/driver/login": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/driver/login.js"
+    ],
     "/driver/register": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

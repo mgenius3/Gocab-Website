@@ -11,6 +11,7 @@ import Head from "next/head";
 // import { TextField, InputAdornment, IconButton } from "@material-ui/core";
 // import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useRouter } from "next/router";
 import {
   Paper,
   TextField,
@@ -23,6 +24,7 @@ import {
 } from "@mui/material";
 
 const SignUp = () => {
+  const router = useRouter();
   const api = new FetchApiClient("/driver");
   const [formData, setFormData] = useState({
     name: "",
@@ -148,6 +150,7 @@ const SignUp = () => {
                 <TextField
                   label="Password"
                   type={showPassword ? "text" : "password"}
+                  name="password"
                   value={formData.password}
                   onChange={handleChange}
                   fullWidth
@@ -197,7 +200,10 @@ const SignUp = () => {
                   marginTop: "10px",
                 }}
               >
-                <Link href="https://google.com" variant="body2">
+                <Link
+                  href="https://gocab.vercel.app/driver/login"
+                  variant="body2"
+                >
                   {"Already have an account? Login"}
                 </Link>
               </Grid>

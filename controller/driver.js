@@ -14,7 +14,7 @@ const DriverRegistration = async (req, res) => {
     await RegisterDriver(req.body);
     const user = await LoginDriver({
       email: req.body.email,
-      passwowrd: req.body.password,
+      password: req.body.password,
     });
 
     const token = jwt.sign({ ...user }, "gocab.transit.logistics");

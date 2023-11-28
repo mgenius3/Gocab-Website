@@ -181,6 +181,7 @@ export default function UploadInformation({ user }) {
         <InputFileUpload
           handleFile={handleFileSelect}
           label={"upload document"}
+          style={{ marginTop: "10px", marginBottom: "3px" }}
         />
         <br />
         <FormControl variant="outlined">
@@ -192,6 +193,7 @@ export default function UploadInformation({ user }) {
             loading
             variant="outlined"
             className="my-3 cursor-pointer"
+            style={{ marginTop: "10px", marginBottom: "3px" }}
           >
             {" "}
             SUBMIT
