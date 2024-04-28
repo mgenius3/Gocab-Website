@@ -1,15 +1,18 @@
 // components/SignUp.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Link from "next/link";
+// import Link from "next/link";
 import FetchApiClient from "../../fetch_api_clients/api";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Head from "next/head";
-// import { TextField, InputAdornment, IconButton } from "@material-ui/core";
-// import { Visibility, VisibilityOff } from "@material-ui/icons";
+import Link from "@mui/material/Link";
+import { FormControl } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import {
@@ -22,10 +25,15 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
+import { route } from "../../helper/helper";
+import { useToasts } from "react-toast-notifications";
 
 const SignUp = () => {
+  const [organisation, setOrganisation] = useState([]);
+  const { addToast } = useToasts();
   const router = useRouter();
   const api = new FetchApiClient("/driver");
+  const orgApi = new FetchApiClient("/organisation");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -45,27 +53,47 @@ const SignUp = () => {
 
     try {
       setLoading(true);
-
       const userData = {
         name: formData.name,
         phone: formData.phone,
         address: formData.address,
         email: formData.email,
         password: formData.password,
+        organisation: formData.organisation,
       };
+
+      console.log(userData);
       let { error, response } = await api.post("/register", userData);
       if (error) throw new Error(error);
       else {
         localStorage.setItem("userToken", JSON.stringify(response));
-        toast.info("Successfully registered");
-        router.push("https://gocab.vercel.app/driver/dashboard/information");
+        // toast.info("Successfully registered");
+        addToast("Successfully registered", { appearance: "success" });
+        router.push(`${route}/driver/dashboard/information`);
       }
       setLoading(false);
     } catch (err) {
-      toast.error(err.message);
+      addToast(err.message, { appearance: "error" });
       setLoading(false);
     }
   };
+
+  const fetchOrganisation = async () => {
+    let allapprovedOrganisation = [];
+    try {
+      let { error, response } = await orgApi.get("/approved");
+      if (error) {
+        console.log(error);
+      }
+      response.map((a) => allapprovedOrganisation.push(a.name));
+
+      setOrganisation(allapprovedOrganisation);
+    } catch (err) {}
+  };
+
+  useEffect(() => {
+    fetchOrganisation();
+  }, []);
 
   return (
     <div>
@@ -137,16 +165,6 @@ const SignUp = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                {/* <TextField
-                  label="Password"
-                  name="password"
-                  variant="outlined"
-                  fullWidth
-                  required
-                  type="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                /> */}
                 <TextField
                   label="Password"
                   type={showPassword ? "text" : "password"}
@@ -168,6 +186,28 @@ const SignUp = () => {
                     ),
                   }}
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Organisation
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    // value={age}
+                    name="organisation"
+                    label="Organisation"
+                    onChange={handleChange}
+                  >
+                    <MenuItem selected value={" "}>
+                      {" "}
+                    </MenuItem>
+                    {organisation.map((a, i) => (
+                      <MenuItem value={a}>{a}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
               </Grid>
             </Grid>
             {loading ? (
@@ -200,10 +240,7 @@ const SignUp = () => {
                   marginTop: "10px",
                 }}
               >
-                <Link
-                  href="https://gocab.vercel.app/driver/login"
-                  variant="body2"
-                >
+                <Link href={`${route}/driver/login`} variant="body2">
                   {"Already have an account? Login"}
                 </Link>
               </Grid>

@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": "driver",
+      "path": "../../../../../../StudioProjects/driver"
+    },
+    {
+      "name": "Gocab",
+      "path": "../../../../../../StudioProjects/Gocab"
+    },
+    {
+      "name": "gocab",
+      "path": "../../.."
+    },
+    {
+      "name": "admin",
+      "path": "../../../../Flenjo Client/admin"
+    },
+    {
+      "path": "../../../../Otuevbo"
+    }
+  ],
+  "settings": {}
+}

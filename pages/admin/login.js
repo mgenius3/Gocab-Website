@@ -18,6 +18,10 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import { route } from "../../helper/helper";
+import { useToasts } from "react-toast-notifications";
 
 function Copyright(props) {
   return (
@@ -42,14 +46,15 @@ const defaultTheme = createTheme();
 export default function SignIn() {
   const router = useRouter();
   const api = new FetchApiClient("/admin");
-
+  const { addToast } = useToasts();
   const [loading, setLoading] = React.useState(false);
+  const [open, setopen] = React.useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     event.preventDefault();
-
+    setopen(true);
     try {
       setLoading(true);
       const userData = {
@@ -60,12 +65,15 @@ export default function SignIn() {
       if (error) throw new Error(error);
       else {
         localStorage.setItem("adminToken", response);
-        toast.info("successful login");
-        router.push("https://gocab.vercel.app/admin/dashboard");
+        addToast("signed in successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        router.push(`${route}/admin/dashboard`);
       }
       setLoading(false);
     } catch (err) {
-      toast.error(err.message);
+      addToast(err.message, { appearance: "error", autoDismiss: true });
       setLoading(false);
     }
   };
@@ -147,11 +155,11 @@ export default function SignIn() {
                   Forgot password?
                 </Link>
               </Grid> */}
-              <Grid item>
-                <Link href="register" variant="body2">
+              {/* <Grid item>
+                <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </Box>

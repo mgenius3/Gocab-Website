@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { route } from "../helper/helper";
 
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -50,10 +51,19 @@ export default function Header() {
             <ul className="flex flex-grow justify-end flex-wrap items-center">
               <li>
                 <Link
-                  href="https://gocab.vercel.app/driver/dashboard/information"
+                  href={`${route}/driver/dashboard/information`}
                   className="font-medium text-blue-600 hover:text-blue-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
                 >
                   Become a Driver
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href={`${route}/organisation/register`}
+                  className="font-medium text-blue-600 hover:text-blue-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
+                >
+                  Register Organisation
                 </Link>
               </li>
               <li>

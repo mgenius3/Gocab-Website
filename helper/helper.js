@@ -30,3 +30,6 @@ export function ClearLocalStorage() {
 
   return null; // No need to render any UI for this component
 }
+
+export const route = "https://gocab.vercel.app";
+// export const route = "http://localhost:3000";

@@ -23,9 +23,11 @@ import FetchApiClient from "../../../fetch_api_clients/api";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import UnverifiedDrivers from "./unverifiedDrivers";
+import UnverifiedOrganisations from "./unverifiedOrganisation";
 import { useRouter } from "next/router";
 import { jwtDecode } from "jwt-decode";
 import Title from "./Title";
+import { route } from "../../../helper/helper";
 
 function Copyright(props) {
   return (
@@ -97,6 +99,7 @@ const defaultTheme = createTheme();
 export default function Dashboard() {
   const [usersData, setUsersData] = React.useState(null);
   const [driversData, setDriversData] = React.useState(null);
+  const [orgsData, setOrgsData] = React.useState(null);
 
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -116,8 +119,23 @@ export default function Dashboard() {
   const fetchDriverInfo = async () => {
     try {
       let { error, response } = await api.get("/all_drivers");
+      console.log(response, orgError);
       if (error) throw new Error(error);
-      else setDriversData(response);
+      else {
+        setDriversData(response);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const fetchAllOrganisation = async () => {
+    try {
+      let { error, response } = await api.get("/all_organisation");
+      if (error) throw new Error(error);
+      else {
+        setOrgsData(response);
+      }
     } catch (err) {
       console.log(err.message);
     }
@@ -139,8 +157,9 @@ export default function Dashboard() {
       setUser(decoded);
       fetchDriverInfo();
       fetchUsersInfo();
+      fetchAllOrganisation();
     } catch (err) {
-      router.push("https://gocab.vercel.app/admin/login");
+      router.push(`${route}/admin/login`);
     }
   }, [token]);
 
@@ -282,8 +301,14 @@ export default function Dashboard() {
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                   <Title>Unverified Drivers</Title>
-
                   <UnverifiedDrivers driversData={driversData} />
+                </Paper>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <Title>Unverified Organisation</Title>
+                  <UnverifiedOrganisations orgsData={orgsData} />
                 </Paper>
               </Grid>
             </Grid>

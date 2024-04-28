@@ -6,6 +6,8 @@ import firebaseConfig from "../../../../configdb/db";
 import { getDatabase, ref, set } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useToasts } from "react-toast-notifications";
+import { useRouter } from "next/router";
 
 import {
   Button,
@@ -42,7 +44,8 @@ const style = {
 const DriverInfoList = ({ driverData, open, handleClose }) => {
   const [approveloading, setApproveLoading] = useState(false);
   const [declineloading, setDeclineLoading] = useState(false);
-
+  const { addToast } = useToasts();
+  const router = useRouter();
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 
@@ -58,7 +61,11 @@ const DriverInfoList = ({ driverData, open, handleClose }) => {
       await set(dbRef, `${response}`);
       if (response == "approved") {
         setApproveLoading(false);
-        toast.info("Verification status updated to 'approved'");
+        addToast("Verification status updated to 'approved'", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        router.reload();
       } else setDeclineLoading(false);
     } catch (error) {
       if (response == "approved") setApproveLoading(false);

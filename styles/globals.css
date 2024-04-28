@@ -10,6 +10,12 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: white;
 }
+p {
+  color: "blue";
+}
+.moses {
+  background-color: blue;
+}
 
 a {
   color: inherit;
@@ -27,7 +33,6 @@ a {
 @font-face {
   font-family: "AvenirNextW10-Bold";
   src: url("../public/fonts/AvenirNext.ttf");
-
 }
 
 .Avenir {
@@ -46,7 +51,7 @@ a {
 
 .greyC {
   filter: gray;
-  -webkit-filter: grayscale(100%); 
+  -webkit-filter: grayscale(100%);
   transition: 0.4s;
 }
 
@@ -54,4 +59,31 @@ a {
   filter: none;
   -webkit-filter: none;
   transition: 0.4s;
+}
+
+.toast-message {
+  background: darkblue;
+  color: #fff;
+  font-size: 20px;
+  width: 34vw;
+  padding: 30px 20px;
+}
+
+/* Custom CSS classes for entering and exiting transitions */
+.custom-enter {
+  opacity: 0;
+}
+
+.custom-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+
+.custom-exit {
+  opacity: 1;
+}
+
+.custom-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
 }

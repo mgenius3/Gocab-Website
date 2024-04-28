@@ -29,6 +29,7 @@ const RegisterDriver = async (data) => {
       address: data.address,
       email: data.email,
       password: data.password,
+      organisation: data.organisation,
     };
     const dbRef = ref(db, "drivers/" + user.uid);
 

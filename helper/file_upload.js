@@ -8,10 +8,9 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 const uploadFile = async (selectedFile, uid) => {
-  console.log(storage);
   const storeRef = ref(
     storage,
-    `drivers/${uid}/document/${selectedFile?.name}`
+    `drivers/${uid ? uid : null}/document/${selectedFile?.name}`
   );
 
   try {

@@ -20,6 +20,7 @@ import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useToasts } from "react-toast-notifications";
 
 export default function UploadInformation({ user }) {
   const [v_model, setVModel] = React.useState("");
@@ -30,6 +31,7 @@ export default function UploadInformation({ user }) {
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [fileURL, setFileURL] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const { addToast } = useToasts();
 
   const router = useRouter();
   const app = initializeApp(firebaseConfig);
@@ -68,13 +70,26 @@ export default function UploadInformation({ user }) {
         set(dbRef, formData)
           .then(() => {
             setLoading(false);
-            toast.info("Information submitted successfully");
+            addToast("Information submitted successfully", {
+              appearance: "success",
+            });
+
+            // toast.info("Information submitted successfully");
             router.reload();
           })
           .catch((error) => {
             if (error.code === "auth/email-already-in-use") {
+              addToast(
+                "Email address is already in use. Please use a different email.",
+                { appearance: "error" }
+              );
+
               toast.error(
                 "Email address is already in use. Please use a different email."
+              );
+              addToast(
+                "Email address is already in use. Please use a different email.",
+                { appearance: "error" }
               );
             } else {
               toast.error("Error storing data in Firebase:", error.message);
@@ -86,8 +101,7 @@ export default function UploadInformation({ user }) {
       }
     } catch (err) {
       setLoading(false);
-
-      toast.error(err.message);
+      addToast(err.message, { appearance: "error", autoDismiss: true });
     }
   };
 

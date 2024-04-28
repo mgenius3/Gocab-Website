@@ -43,6 +43,7 @@ import {
   RadioGroup,
   FormLabel,
 } from "@mui/material";
+import { route } from "../../../../helper/helper";
 
 function Copyright(props) {
   return (
@@ -149,7 +150,7 @@ export default function Dashboard() {
       setUser(decoded);
       fetchDriverInfo(decoded?.uid);
     } catch (err) {
-      router.push("https://gocab.vercel.app/driver/login");
+      router.push(`${route}/driver/login`);
     }
   }, [token]);
 

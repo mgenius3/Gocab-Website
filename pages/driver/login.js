@@ -18,6 +18,8 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { route } from "../../helper/helper";
+import { useToasts } from "react-toast-notifications";
 
 function Copyright(props) {
   return (
@@ -42,6 +44,7 @@ const defaultTheme = createTheme();
 export default function SignIn() {
   const router = useRouter();
   const api = new FetchApiClient("/driver");
+  const { addToast } = useToasts();
 
   const [loading, setLoading] = React.useState(false);
 
@@ -60,12 +63,14 @@ export default function SignIn() {
       if (error) throw new Error(error);
       else {
         localStorage.setItem("userToken", JSON.stringify(response));
-        toast.info("successful login");
-        router.push("https://gocab.vercel.app/driver/dashboard/information");
+        addToast("Successfully logged in", { appearance: "success" });
+
+        // toast.info("successful login");
+        // router.push(`${route}/driver/dashboard/information`);
       }
       setLoading(false);
     } catch (err) {
-      toast.error(err.message);
+      addToast(err.message, { appearance: "error" });
       setLoading(false);
     }
   };
